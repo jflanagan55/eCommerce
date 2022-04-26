@@ -1,6 +1,7 @@
 import React from 'react'
 import {GiRunningShoe} from 'react-icons/gi'
 import './header.css'
+import {Link} from 'react-router-dom'
 
 const Header = () =>{
     return(
@@ -9,8 +10,8 @@ const Header = () =>{
                 <h1>Seoh's Shoes</h1>
             </div>
             <div className='rightSideNav'>
-                <h2>Home</h2>
-                <h2>Our Products</h2>
+                <Link to="/home">Home</Link>
+                <Link to="/products">Our Products</Link>
                 <GiRunningShoe size={60}/>
             </div>
         </nav>
