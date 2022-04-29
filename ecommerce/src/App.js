@@ -10,7 +10,7 @@ import HomePage from "./components/HomePage";
             <div>
                 <Header />
                 <Routes>
-                    <Route path="home" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="products" element={<Content />} />
                 </Routes>
             </div>

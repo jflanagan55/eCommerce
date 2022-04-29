@@ -1,38 +1,20 @@
 import React from "react";
 import ShoeCard from "./ShoeCard";
+import { connect } from 'react-redux'
 
-const Content = () =>{
+
+const Content = ( {products} ) =>{
     return(
-    <div className="ui container">
-      <div className="ui grid">
-        <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-          <ShoeCard name= 'Blue Skateboard Shoe' price = "$49.99" picLink = "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-        </div>
-    </div>
+    <div className="ui grid container">
+        {products.map((product)=>(
+            <ShoeCard key = {product.id} productData = {product}  />
+        ))}
+      </div>
     )
 }
-
-
-export default Content;
+const mapStateToProps = state =>{
+  return{
+    products: state.shop.products
+}
+}
+export default connect(mapStateToProps)(Content)

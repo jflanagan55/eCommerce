@@ -10,7 +10,7 @@ const Header = () =>{
                 <h1>Seoh's Shoes</h1>
             </div>
             <div className='rightSideNav'>
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
                 <Link to="/products">Our Products</Link>
                 <GiRunningShoe size={60}/>
             </div>
