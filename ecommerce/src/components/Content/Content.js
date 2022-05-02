@@ -1,13 +1,14 @@
 import React from "react";
 import ShoeCard from "./ShoeCard";
 import { connect } from 'react-redux'
+import './content.css'
 
 
 const Content = ( {products} ) =>{
     return(
-    <div className="ui grid container">
+    <div className="contentContainer">
         {products.map((product)=>(
-            <ShoeCard key = {product.id} productData = {product}  />
+            <ShoeCard key = {product.id} productData = {product}/>
         ))}
       </div>
     )
