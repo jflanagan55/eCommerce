@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import CartItem from './CartItem'
+import './cart.css'
 
 import {connect} from 'react-redux'
 
@@ -21,18 +22,22 @@ const Cart = ({cart}) =>{
     },[cart, totalPrice, totalItems, setTotalPrice, setTotalItems])
     return (
     <div>
-        <div>
+        <h2>Your Cart</h2>
+        <div className='cartItemContainer'>
             {cart.map((item) =>(
                 <CartItem key = {item.id} itemData = {item}/>
             ))}
         </div>
-        <div>
-            <h3>Your Cart</h3>
+        <div className='cartSummary'>
             <div>
-                <span>Total: ({totalItems})</span>
-                <span>$ {totalPrice}</span>
+                <h3>Summary</h3>
             </div>
-            <button>Checkout</button>
+            <div className='itemsAndPrice'>
+                <span id='itemCount'>{totalItems} Items</span>
+                <span><b>$ {totalPrice.toFixed(2)}</b></span>
+            </div>
+            <button className='positive ui button'>Checkout</button>
+            
         </div>
     </div>
     )

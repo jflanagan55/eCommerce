@@ -1,0 +1,40 @@
+* {
+    text-align: center;
+}
+
+.cartItemContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    justify-items: center;
+}
+
+.qtyInfo{
+    margin-bottom: 0.8rem;
+}
+
+.cartSummary {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    border-top: 2px solid black;
+    align-items: center;
+    padding: 2rem;
+}
+
+.itemsAndPrice{
+    display: flex;
+    flex-direction: column;
+}
+
+.cartSummary>div>h3{
+    font-size: 2rem;
+}
+
+#itemCount{
+    font-size: 1.2rem;
+}
+h2{
+    justify-content: center;
+}

@@ -16,12 +16,14 @@ const Header = ({cart}) =>{
     return(
         <nav>
             <div className = "leftSideNav">
-                <h1>Seoh's Shoes</h1>
+                <Link to="/">
+                    <h1>Seoh's Shoes</h1>
+                </Link>
             </div>
             <div className='rightSideNav'>
                 <Link to="/">Home</Link>
-                <Link to="/products">Our Products</Link>
-                <Link to="/cart">
+                <Link to="/products" >Our Products</Link>
+                <Link to="/cart" >
                     <FaShoppingCart size = {30} />
                     <span>{cartCount}</span>
                 </Link>

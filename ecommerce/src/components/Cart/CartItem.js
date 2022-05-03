@@ -9,21 +9,23 @@ const CartItem = ({itemData, removeFromCart, adjustQty}) =>{
         setInput(e.target.value)
         adjustQty(itemData.id, e.target.value)
     }
+    
+   
     return (
-        <div>
+        <div className='ui card'>
             <img 
               src={itemData.image}  
             />
             <div>
                 <h3>{itemData.name}</h3>
-                <p>{itemData.price}</p>
+                <p>$ {itemData.price}</p>
             </div>
-            <div>
-                <label htmlFor='qty'>Qty</label>
-                <input min="1" type= "number" id= "qty" name = "qty" value = {input} onChange = {onChangeHandler}/>
-
+            <div className='qtyInfo'>
+                <label htmlFor='qty'>Quantity</label>
+                <input className='ui input' min="1" type= "number" id= "qty" name = "qty" value = {input} onChange = {onChangeHandler}/>
+                
             </div>
-            <button onClick = {()=>removeFromCart(itemData.id)}>Delete</button>
+            <button onClick = {()=>removeFromCart(itemData.id)} className= 'negative ui button'>Delete</button>
         </div>
     )
 }
