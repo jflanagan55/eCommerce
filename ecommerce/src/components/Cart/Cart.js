@@ -1,8 +1,10 @@
 import React,{useState, useEffect} from 'react'
 import CartItem from './CartItem'
 import './cart.css'
-
+import Modal from 'react-modal'
 import {connect} from 'react-redux'
+import Content from '../Content'
+import ModalForm from '../ModalForm'
 
 const Cart = ({cart}) =>{
     const [totalPrice, setTotalPrice] = useState(0)
@@ -20,6 +22,9 @@ const Cart = ({cart}) =>{
         setTotalPrice(price)
         setTotalItems(items)
     },[cart, totalPrice, totalItems, setTotalPrice, setTotalItems])
+
+    const[openModal, setOpenModal] = useState(false);
+    Modal.setAppElement('#root')
     return (
     <div>
         <h2>Your Cart</h2>
@@ -36,9 +41,29 @@ const Cart = ({cart}) =>{
                 <span id='itemCount'>{totalItems} Items</span>
                 <span><b>$ {totalPrice.toFixed(2)}</b></span>
             </div>
-            <button className='positive ui button'>Checkout</button>
+            <button className='positive ui button' onClick={()=> setOpenModal(true)}>Checkout</button>
             
         </div>
+        <Modal isOpen={openModal}  onRequestClose={()=>setOpenModal(false)}
+        style = {
+            {
+                overlay:{
+                    backgroundColor: 'rgba(0,0,0,0.6)'
+                }
+                
+            }
+        }
+        > 
+        <div>
+        </div>
+            <div>
+                <ModalForm />
+                <p>Subtotal: {totalPrice.toFixed(2)}</p>
+                <p>Tax: {(totalPrice*.0635).toFixed(2)}</p>
+                <p>Total: {(totalPrice*1.0635).toFixed(2)}</p>
+            </div>
+            <button onClick={()=>setOpenModal(false)}>Close</button>
+        </Modal>
     </div>
     )
 }
@@ -49,3 +74,5 @@ const mapStateToProps = state =>{
 }
 
 export default connect(mapStateToProps)(Cart);
+
+//AIzaSyA5GNEPKXOC5dF7-Koa9I8qZYnVam3Kj9M
