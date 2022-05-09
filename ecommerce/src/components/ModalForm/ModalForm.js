@@ -1,7 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
-const ModalForm = () =>{
+const cvvRegex = /^[0-9]{3,4}$/
+
+
+
+const ModalForm = ({totalPrice}) =>{
 return(
     <form className="ui form">
         <h4 className="ui dividing header">Shipping Information</h4>
@@ -35,9 +40,9 @@ return(
                     <label>City</label>
                     <input type="text" className="field"/>
                 </div>
-                <div class="field">
+                <div className="field">
                     <label>State</label>
-                    <select class="ui fluid dropdown">
+                    <select className="ui fluid dropdown">
                     <option value=""></option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -96,11 +101,73 @@ return(
                     <label>Zip Code</label>
                     <input type="text" className="field"/>
                 </div>
+            </div>
+            <div className="field">
+                <label>Payment Info</label>
+                <div className="four fields">
+                    <div className="field">
+                        <label>Card Number</label>
+                        <input type="text" className="field"/>
+                    </div>
+                    <div className="field">
+                        <label>CVV/CVC</label>
+                        <input type="text" className="field" id = "cvv"/>
+                    </div>
+                    <div className="field">
+                        <label>Exp. Month</label>
+                        <select className="ui fluid search dropdown">
+                            <option value="">Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div className="field">
+                        <label>Exp. Year</label>
+                        <select className="ui fluid search dropdown">
+                            <option value="">Year</option>
+                            <option value="1">2022</option>
+                            <option value="2">2023</option>
+                            <option value="3">2024</option>
+                            <option value="4">2025</option>
+                            <option value="5">2026</option>
+                            <option value="6">2027</option>
+                            <option value="7">2028</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
 
 
+        </div>
+        <div className="ui segment">
+            <div>
+                <p><b>Subtotal: {totalPrice.toFixed(2)}</b></p>
+                <p><b>Tax: {(totalPrice*.0635).toFixed(2)}</b></p>
+                <p><b>Total: {(totalPrice*1.0635).toFixed(2)}</b></p>
+
+            </div>
+            <div>
+                <button className="negative ui button">
+                        Back to cart 
+                </button>
+                <button className="positive ui button">
+                    Checkout
+                </button>
             </div>
         </div>
     </form>
+    
 )
 }
 

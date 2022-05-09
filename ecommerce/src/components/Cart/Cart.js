@@ -44,7 +44,7 @@ const Cart = ({cart}) =>{
             <button className='positive ui button' onClick={()=> setOpenModal(true)}>Checkout</button>
             
         </div>
-        <Modal isOpen={openModal}  onRequestClose={()=>setOpenModal(false)}
+        <Modal isOpen={openModal}  onRequestClose={()=>setOpenModal(false)} id ='modal'
         style = {
             {
                 overlay:{
@@ -57,12 +57,8 @@ const Cart = ({cart}) =>{
         <div>
         </div>
             <div>
-                <ModalForm />
-                <p>Subtotal: {totalPrice.toFixed(2)}</p>
-                <p>Tax: {(totalPrice*.0635).toFixed(2)}</p>
-                <p>Total: {(totalPrice*1.0635).toFixed(2)}</p>
+                <ModalForm totalPrice={totalPrice}/>
             </div>
-            <button onClick={()=>setOpenModal(false)}>Close</button>
         </Modal>
     </div>
     )
