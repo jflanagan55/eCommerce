@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as validation from '../RegEx'
 
+const validateForm = () =>{
+    let firstName = document.querySelector('#firstName').value
+    let lastName = document.querySelector('#lastName').value
+    let phoneNumber = document.querySelector('#phoneNumber').value
+    let emailAddress = document.querySelector('#emailAddress').value
 
-const cvvRegex = /^[0-9]{3,4}$/
+    let streetAddress = document.querySelector('streetAddress').value
+    let city = document.querySelector('#city').value
+    let zipCode = document.querySelector('#zipCode').value
+    let cardNumber = document.querySelector('#cardNumber').value
+    let cvv = document.querySelector('#cvv').value
 
-
-
+}
 const ModalForm = ({totalPrice}) =>{
 return(
     <form className="ui form">
@@ -14,18 +23,18 @@ return(
             <label>Your Info</label>
             <div className="two fields">
                 <div className="field">
-                    <input type="text" placeholder="First Name" className="field"/>
+                    <input type="text" placeholder="First Name" className="field" id = "firstName"/>
                 </div>
                 <div className="field">
-                    <input type="text" placeholder="Last Name" className="field"/>
+                    <input type="text" placeholder="Last Name" className="field" id = "lastName" />
                 </div>
             </div>
             <div className="two fields">
                 <div className="field">
-                    <input type="tel" placeholder="Phone Number" className="field"/>
+                    <input type="tel" placeholder="Phone Number" className="field" id="phoneNumber"/>
                 </div>
                 <div className="field">
-                    <input type="email" placeholder="Email Address" className="field"/>
+                    <input type="email" placeholder="Email Address" className="field" id= "emailAddress"/>
                 </div>
             </div>
         </div>
@@ -34,11 +43,11 @@ return(
             <div className=" four fields">
                 <div className="field">
                     <label>Street Address</label>
-                    <input type="text"  className="field"/>
+                    <input type="text"  className="field" id="streetAddress"/>
                 </div>
                 <div className="field">
                     <label>City</label>
-                    <input type="text" className="field"/>
+                    <input type="text" className="field" id = "city"/>
                 </div>
                 <div className="field">
                     <label>State</label>
@@ -99,7 +108,7 @@ return(
                 </div>
                 <div className="field">
                     <label>Zip Code</label>
-                    <input type="text" className="field"/>
+                    <input type="text" className="field" id="zipCode"/>
                 </div>
             </div>
             <div className="field">
@@ -107,7 +116,7 @@ return(
                 <div className="four fields">
                     <div className="field">
                         <label>Card Number</label>
-                        <input type="text" className="field"/>
+                        <input type="text" className="field" id="cardNumber" />
                     </div>
                     <div className="field">
                         <label>CVV/CVC</label>
@@ -152,16 +161,16 @@ return(
         </div>
         <div className="ui segment">
             <div>
-                <p><b>Subtotal: {totalPrice.toFixed(2)}</b></p>
-                <p><b>Tax: {(totalPrice*.0635).toFixed(2)}</b></p>
-                <p><b>Total: {(totalPrice*1.0635).toFixed(2)}</b></p>
+                <p><b>Subtotal: ${totalPrice.toFixed(2)}</b></p>
+                <p><b>Tax: ${(totalPrice*.0635).toFixed(2)}</b></p>
+                <p><b>Total: ${(totalPrice*1.0635).toFixed(2)}</b></p>
 
             </div>
             <div>
                 <button className="negative ui button">
                         Back to cart 
                 </button>
-                <button className="positive ui button">
+                <button className="positive ui button" onClick={(validateForm)}>
                     Checkout
                 </button>
             </div>
