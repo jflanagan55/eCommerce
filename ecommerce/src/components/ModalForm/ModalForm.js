@@ -2,38 +2,100 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as validation from '../RegEx'
 
-const validateForm = () =>{
+const errorCreator = (incorrectVal) =>{
+    let errorMessage = `Please enter a valid ${incorrectVal}`
+    let errorDiv = document.createElement('div')
+    errorDiv.innerText = errorMessage
+    errorDiv.style.color = "#cc0000"
+    errorDiv.classList.add('inputError')
+    return errorDiv;
+}
+
+const validateForm = (event) =>{
+    event.preventDefault()
+    
     let firstName = document.querySelector('#firstName').value
     let lastName = document.querySelector('#lastName').value
     let phoneNumber = document.querySelector('#phoneNumber').value
     let emailAddress = document.querySelector('#emailAddress').value
-
-    let streetAddress = document.querySelector('streetAddress').value
+    let streetAddress = document.querySelector('#streetAddress').value
     let city = document.querySelector('#city').value
     let zipCode = document.querySelector('#zipCode').value
     let cardNumber = document.querySelector('#cardNumber').value
     let cvv = document.querySelector('#cvv').value
 
+    if (document.contains(document.querySelector('.inputError'))){
+        document.querySelector('.inputError').remove()
+    }
+
+    if(validation.firstNameCheck.test(firstName)=== false){
+        let error = errorCreator("first name")
+        let firstNameContainer = document.querySelector('#firstNameContainer')
+        firstNameContainer.append(error)
+   
+    }
+    else if(validation.lastNameCheck.test(lastName)=== false){
+        let error = errorCreator("last name")
+        let lastNameContainer = document.querySelector('#lastNameContainer')
+        lastNameContainer.append(error)
+    }
+    else if(validation.phoneNumberCheck.test(phoneNumber) === false){
+        let error = errorCreator("phone number")
+        let phoneContainer = document.querySelector('#phoneContainer')
+        phoneContainer.append(error)
+    }
+    else if(validation.emailCheck.test(emailAddress)===false){
+        let error = errorCreator("email address")
+        let emailContainer = document.querySelector('#emailContainer')
+        emailContainer.append(error)
+    }
+    else if(validation.streetAddressCheck.test(streetAddress)===false){
+        let error = errorCreator("street address")
+        let streetAddressContainer = document.querySelector('#streetAddressContainer')
+        streetAddressContainer.append(error)
+    }
+    else if(validation.cityCheck.test(city)===false){
+        let error = errorCreator("city")
+        let cityContainer = document.querySelector('#cityContainer')
+        cityContainer.append(error)
+    }
+    else if(validation.zipCheck.test(zipCode)===false){
+        let error = errorCreator("zip code")
+        let zipCodeContainer = document.querySelector('#zipCodeContainer')
+        zipCodeContainer.append(error)
+    }
+    else if(validation.cardCheck.test(cardNumber)===false){
+        let error = errorCreator("card number")
+        let cardNumberContainer = document.querySelector('#cardNumberContainer')
+        cardNumberContainer.append(error)
+    }
+     else if(validation.cvvCheck.test(cvv)===false){
+        let error = errorCreator("cvv/cvc")
+        let cvvContainer = document.querySelector('#cvvContainer')
+        cvvContainer.append(error)
+        
+    }
+
 }
 const ModalForm = ({totalPrice}) =>{
 return(
-    <form className="ui form">
+    <form className="ui form" onSubmit={(validateForm)}>
         <h4 className="ui dividing header">Shipping Information</h4>
         <div className="field">
             <label>Your Info</label>
             <div className="two fields">
-                <div className="field">
+                <div className="field" id="firstNameContainer">
                     <input type="text" placeholder="First Name" className="field" id = "firstName"/>
                 </div>
-                <div className="field">
+                <div className="field" id="lastNameContainer">
                     <input type="text" placeholder="Last Name" className="field" id = "lastName" />
                 </div>
             </div>
             <div className="two fields">
-                <div className="field">
+                <div className="field" id="phoneContainer">
                     <input type="tel" placeholder="Phone Number" className="field" id="phoneNumber"/>
                 </div>
-                <div className="field">
+                <div className="field" id= "emailContainer">
                     <input type="email" placeholder="Email Address" className="field" id= "emailAddress"/>
                 </div>
             </div>
@@ -41,11 +103,11 @@ return(
         <div className="field">
             <label>Shipping Address</label>
             <div className=" four fields">
-                <div className="field">
+                <div className="field" id="streetAddressContainer">
                     <label>Street Address</label>
                     <input type="text"  className="field" id="streetAddress"/>
                 </div>
-                <div className="field">
+                <div className="field" id="cityContainer">
                     <label>City</label>
                     <input type="text" className="field" id = "city"/>
                 </div>
@@ -106,7 +168,7 @@ return(
                     <option value="WY">Wyoming</option>
                     </select>
                 </div>
-                <div className="field">
+                <div className="field" id="zipCodeContainer">
                     <label>Zip Code</label>
                     <input type="text" className="field" id="zipCode"/>
                 </div>
@@ -114,11 +176,11 @@ return(
             <div className="field">
                 <label>Payment Info</label>
                 <div className="four fields">
-                    <div className="field">
+                    <div className="field" id="cardNumberContainer">
                         <label>Card Number</label>
                         <input type="text" className="field" id="cardNumber" />
                     </div>
-                    <div className="field">
+                    <div className="field" id ="cvvContainer">
                         <label>CVV/CVC</label>
                         <input type="text" className="field" id = "cvv"/>
                     </div>
@@ -170,12 +232,12 @@ return(
                 <button className="negative ui button">
                         Back to cart 
                 </button>
-                <button className="positive ui button" onClick={(validateForm)}>
+                <button className="positive ui button">
                     Checkout
                 </button>
             </div>
         </div>
-    </form>
+    </form >
     
 )
 }
