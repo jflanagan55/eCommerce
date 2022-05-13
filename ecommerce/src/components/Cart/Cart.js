@@ -1,69 +1,77 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import CartItem from './CartItem'
 import './cart.css'
 import Modal from 'react-modal'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Content from '../Content'
 import ModalForm from '../ModalForm'
 
-const Cart = ({cart}) =>{
+const Cart = ({ cart }) => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalItems, setTotalItems] = useState(0)
 
-    useEffect(()=>{
+    useEffect(() => {
         let items = 0;
         let price = 0;
-        
-        cart.forEach(item =>{
+
+        cart.forEach(item => {
             items += item.qty;
-            price += item.qty*item.price
+            price += item.qty * item.price
         })
 
         setTotalPrice(price)
         setTotalItems(items)
-    },[cart, totalPrice, totalItems, setTotalPrice, setTotalItems])
+    }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems])
 
-    const[openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     Modal.setAppElement('#root')
     return (
-    <div>
-        <h2>Your Cart</h2>
-        <div className='cartItemContainer'>
-            {cart.map((item) =>(
-                <CartItem key = {item.id} itemData = {item}/>
-            ))}
-        </div>
-        <div className='cartSummary'>
-            <div>
-                <h3>Summary</h3>
-            </div>
-            <div className='itemsAndPrice'>
-                <span id='itemCount'>{totalItems} Items</span>
-                <span><b>$ {totalPrice.toFixed(2)}</b></span>
-            </div>
-            <button className='positive ui button' onClick={()=> setOpenModal(true)}>Checkout</button>
-            
-        </div>
-        <Modal isOpen={openModal}  onRequestClose={()=>setOpenModal(false)} id ='modal'
-        style = {
-            {
-                overlay:{
-                    backgroundColor: 'rgba(0,0,0,0.6)'
-                }
-                
-            }
-        }
-        > 
         <div>
-        </div>
-            <div>
-                <ModalForm totalPrice={totalPrice}/>
+            <h2>Your Cart</h2>
+            <div className='cartItemContainer'>
+                {cart.map((item) => (
+                    <CartItem key={item.id} itemData={item} />
+                ))}
             </div>
-        </Modal>
-    </div>
+            <div className='cartSummary'>
+                <div>
+                    <h3>Summary</h3>
+                </div>
+                <div className='itemsAndPrice'>
+                    <span id='itemCount'>{totalItems} Items</span>
+                    <span><b>$ {totalPrice.toFixed(2)}</b></span>
+                </div>
+                <button className='positive ui button' onClick={() => setOpenModal(true)}>Checkout</button>
+
+            </div>
+            <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)} id='modal'
+                style={
+                    {
+                        overlay: {
+                            backgroundColor: 'rgba(0,0,0,0.6)'
+                        },
+                        content: {
+                            top: '50%',
+                            left: '50%',
+                            right: 'auto',
+                            bottom: 'auto',
+                            marginRight: '-50%',
+                            transform: 'translate(-50%, -50%)',
+                          }
+
+                    }
+                }
+            >
+                <div>
+                </div>
+                <div>
+                    <ModalForm totalPrice={totalPrice} setOpenModal={setOpenModal} />
+                </div>
+            </Modal>
+        </div>
     )
 }
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return {
         cart: state.shop.cart
     }

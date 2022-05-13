@@ -117,7 +117,8 @@ const shopReducer = (state = INITIAL_STATE, action) =>{
                     ? {...item, qty: +action.payload.qty} 
                     : item
                 )
-            }   
+            }
+          
         default:
             return state;
     }
