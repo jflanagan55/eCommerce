@@ -118,6 +118,11 @@ const shopReducer = (state = INITIAL_STATE, action) =>{
                     : item
                 )
             }
+            case actionTypes.RESET_CART:
+                return {
+                    ...state,
+                    cart: [],
+                }
           
         default:
             return state;

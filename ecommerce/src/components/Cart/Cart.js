@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import Content from '../Content'
 import ModalForm from '../ModalForm'
 
+
+
 const Cart = ({ cart }) => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalItems, setTotalItems] = useState(0)
@@ -23,10 +25,34 @@ const Cart = ({ cart }) => {
         setTotalItems(items)
     }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems])
 
+    const checkCart = ()=>{
+        if (document.contains(document.querySelector(".errorDiv"))) {
+            document.querySelector(".errorDiv").remove();
+          }
+        if(cart.length === 0){
+            let cartContainer = document.querySelector('#cartContainer')
+            let emptyWarn = document.createElement('div')
+            emptyWarn.innerText = "Your Cart is empty"
+            emptyWarn.style.color = "#cc0000"
+            emptyWarn.classList.add('errorDiv')
+            cartContainer.append(emptyWarn)
+            
+    
+        }
+        else{
+            if (document.contains(document.querySelector(".errorDiv"))) {
+                document.querySelector(".errorDiv").remove();
+              }
+            setOpenModal(true)
+            
+        }
+       
+    }
+
     const [openModal, setOpenModal] = useState(false);
     Modal.setAppElement('#root')
     return (
-        <div>
+        <div id="cartContainer">
             <h2>Your Cart</h2>
             <div className='cartItemContainer'>
                 {cart.map((item) => (
@@ -41,7 +67,7 @@ const Cart = ({ cart }) => {
                     <span id='itemCount'>{totalItems} Items</span>
                     <span><b>$ {totalPrice.toFixed(2)}</b></span>
                 </div>
-                <button className='positive ui button' onClick={() => setOpenModal(true)}>Checkout</button>
+                <button className='positive ui button' onClick={checkCart}>Checkout</button>
 
             </div>
             <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)} id='modal'
@@ -58,6 +84,7 @@ const Cart = ({ cart }) => {
                             marginRight: '-50%',
                             transform: 'translate(-50%, -50%)',
                           }
+
 
                     }
                 }

@@ -24,3 +24,10 @@ export const adjustQty = (itemId, value) =>{
         }
     }
 }
+
+export const resetCart = () =>{
+    return {
+        type: actionTypes.RESET_CART,
+   
+    }
+}

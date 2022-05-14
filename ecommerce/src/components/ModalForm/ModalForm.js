@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as validation from "../RegEx";
+import {connect} from 'react-redux'
+import { resetCart } from "../../redux/Shopping/ShoppingActions";
 
 
 const errorCreator = (incorrectVal) => {
@@ -98,9 +100,10 @@ const validateForm = (event) => {
   }
   else {
     document.querySelector("#checkoutForm").submit();
+    resetCart();
   }
 };
-const ModalForm = ({ totalPrice, setOpenModal} ) => {
+const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
   return (
     <form className="ui form" onSubmit={validateForm} id="checkoutForm">
       <h4 className="ui dividing header">Shipping Information</h4>
@@ -282,4 +285,10 @@ const ModalForm = ({ totalPrice, setOpenModal} ) => {
   );
 };
 
-export default ModalForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        resetCart: ()=> dispatch(resetCart)
+    }
+}
+
+export default connect(mapDispatchToProps)(ModalForm);
