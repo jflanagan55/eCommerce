@@ -3,7 +3,7 @@ import {FaShoppingCart} from 'react-icons/fa'
 import './header.css'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-const Header = ({cart}) =>{
+const Header = ({cart},props) =>{
     const [cartCount, setCartCount] = useState(0)
 
     useEffect (() => {
@@ -13,6 +13,9 @@ const Header = ({cart}) =>{
         })
         setCartCount(count)
     }, [cart, cartCount])
+
+    const { location } = props;
+  
     return(
         <nav>
             <div className = "leftSideNav">

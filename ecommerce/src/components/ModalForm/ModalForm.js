@@ -1,111 +1,117 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as validation from "../RegEx";
 import {connect} from 'react-redux'
 import { resetCart } from "../../redux/Shopping/ShoppingActions";
 
 
-const errorCreator = (incorrectVal) => {
-  let errorMessage = `Please enter a valid ${incorrectVal}`;
-  let errorDiv = document.createElement("div");
-  errorDiv.innerText = errorMessage;
-  errorDiv.style.color = "#cc0000";
-  errorDiv.classList.add("inputError");
-  return errorDiv;
-};
 
-const validateForm = (event) => {
-  event.preventDefault();
-  let date = new Date()
-  let year = date.getFullYear()
-  let firstName = document.querySelector("#firstName").value;
-  let lastName = document.querySelector("#lastName").value;
-  let phoneNumber = document.querySelector("#phoneNumber").value;
-  let emailAddress = document.querySelector("#emailAddress").value;
-  let streetAddress = document.querySelector("#streetAddress").value;
-  let city = document.querySelector("#city").value;
-  let zipCode = document.querySelector("#zipCode").value;
-  let cardNumber = document.querySelector("#cardNumber").value;
-  let cvv = document.querySelector("#cvv").value;
-
-  if (document.contains(document.querySelector(".inputError"))) {
-    document.querySelector(".inputError").remove();
-  }
-
-  if (validation.firstNameCheck.test(firstName) === false) {
-    let error = errorCreator("first name");
-    let firstNameContainer = document.querySelector("#firstNameContainer");
-    firstNameContainer.append(error);
-  } else if (validation.lastNameCheck.test(lastName) === false) {
-    let error = errorCreator("last name");
-    let lastNameContainer = document.querySelector("#lastNameContainer");
-    lastNameContainer.append(error);
-  } else if (validation.phoneNumberCheck.test(phoneNumber) === false) {
-    let error = errorCreator("phone number");
-    let phoneContainer = document.querySelector("#phoneContainer");
-    phoneContainer.append(error);
-  } else if (validation.emailCheck.test(emailAddress) === false) {
-    let error = errorCreator("email address");
-    let emailContainer = document.querySelector("#emailContainer");
-    emailContainer.append(error);
-  } else if (validation.streetAddressCheck.test(streetAddress) === false) {
-    let error = errorCreator("street address");
-    let streetAddressContainer = document.querySelector("#streetAddressContainer");
-    streetAddressContainer.append(error);
-  } else if (validation.cityCheck.test(city) === false) {
-    let error = errorCreator("city");
-    let cityContainer = document.querySelector("#cityContainer");
-    cityContainer.append(error);
-  } else if (validation.zipCheck.test(zipCode) === false) {
-    let error = errorCreator("zip code");
-    let zipCodeContainer = document.querySelector("#zipCodeContainer");
-    zipCodeContainer.append(error);
-  } else if (validation.cardCheck.test(cardNumber) === false) {
-    let error = errorCreator("card number");
-    let cardNumberContainer = document.querySelector("#cardNumberContainer");
-    cardNumberContainer.append(error);
-  } else if (validation.cvvCheck.test(cvv) === false) {
-    let error = errorCreator("cvv/cvc");
-    let cvvContainer = document.querySelector("#cvvContainer");
-    cvvContainer.append(error);
-    
-  } else if(document.querySelector('#stateSelect').value == "blank"){
-      let errorDiv = document.createElement('div');
-      errorDiv.innerText = "Please select a State"
-      let stateContainer = document.querySelector('#stateContainer')
-      stateContainer.append(errorDiv)
-      errorDiv.style.color = "#cc0000";
-      errorDiv.classList.add("inputError");
-  }
-  else if(document.querySelector('#expMonthSelect').value === "blank" || document.querySelector('#expYearSelect').value === "blank"){
-    let errorDiv = document.createElement('div');
-    errorDiv.innerText = "Please select a Complete Expiration Date"
-    let expMonthContainer = document.querySelector('#expMonthContainer')
-    expMonthContainer.append(errorDiv)
-    errorDiv.style.color = "#cc0000";
-    errorDiv.classList.add("inputError");
-  }
-
-  else if(parseInt(document.querySelector('#expYearSelect').value)===year){
-      let date = new Date()
-      let month = date.getMonth()
-      if(parseInt(document.querySelector('#expMonthSelect').value) < month ){
-        let errorDiv = document.createElement('div');
-        errorDiv.innerText = "Please select a Valid Expiration Date"
-        let expMonthContainer = document.querySelector('#expMonthContainer')
-        expMonthContainer.append(errorDiv)
+const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
+    const navigate = useNavigate();
+    const errorCreator = (incorrectVal) => {
+        let errorMessage = `Please enter a valid ${incorrectVal}`;
+        let errorDiv = document.createElement("div");
+        errorDiv.innerText = errorMessage;
         errorDiv.style.color = "#cc0000";
         errorDiv.classList.add("inputError");
-      }
-  }
-  else {
-    document.querySelector("#checkoutForm").submit();
-    resetCart();
-  }
-};
-const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
+        return errorDiv;
+      };
+      
+      
+      
+      const validateForm = (event) => {
+        event.preventDefault();
+        let date = new Date()
+        let year = date.getFullYear()
+        let firstName = document.querySelector("#firstName").value;
+        let lastName = document.querySelector("#lastName").value;
+        let phoneNumber = document.querySelector("#phoneNumber").value;
+        let emailAddress = document.querySelector("#emailAddress").value;
+        let streetAddress = document.querySelector("#streetAddress").value;
+        let city = document.querySelector("#city").value;
+        let zipCode = document.querySelector("#zipCode").value;
+        let cardNumber = document.querySelector("#cardNumber").value;
+        let cvv = document.querySelector("#cvv").value;
+      
+        if (document.contains(document.querySelector(".inputError"))) {
+          document.querySelector(".inputError").remove();
+        }
+      
+        if (validation.firstNameCheck.test(firstName) === false) {
+          let error = errorCreator("first name");
+          let firstNameContainer = document.querySelector("#firstNameContainer");
+          firstNameContainer.append(error);
+        } else if (validation.lastNameCheck.test(lastName) === false) {
+          let error = errorCreator("last name");
+          let lastNameContainer = document.querySelector("#lastNameContainer");
+          lastNameContainer.append(error);
+        } else if (validation.phoneNumberCheck.test(phoneNumber) === false) {
+          let error = errorCreator("phone number");
+          let phoneContainer = document.querySelector("#phoneContainer");
+          phoneContainer.append(error);
+        } else if (validation.emailCheck.test(emailAddress) === false) {
+          let error = errorCreator("email address");
+          let emailContainer = document.querySelector("#emailContainer");
+          emailContainer.append(error);
+        } else if (validation.streetAddressCheck.test(streetAddress) === false) {
+          let error = errorCreator("street address");
+          let streetAddressContainer = document.querySelector("#streetAddressContainer");
+          streetAddressContainer.append(error);
+        } else if (validation.cityCheck.test(city) === false) {
+          let error = errorCreator("city");
+          let cityContainer = document.querySelector("#cityContainer");
+          cityContainer.append(error);
+        } else if (validation.zipCheck.test(zipCode) === false) {
+          let error = errorCreator("zip code");
+          let zipCodeContainer = document.querySelector("#zipCodeContainer");
+          zipCodeContainer.append(error);
+        } else if (validation.cardCheck.test(cardNumber) === false) {
+          let error = errorCreator("card number");
+          let cardNumberContainer = document.querySelector("#cardNumberContainer");
+          cardNumberContainer.append(error);
+        } else if (validation.cvvCheck.test(cvv) === false) {
+          let error = errorCreator("cvv/cvc");
+          let cvvContainer = document.querySelector("#cvvContainer");
+          cvvContainer.append(error);
+          
+        } else if(document.querySelector('#stateSelect').value == "blank"){
+            let errorDiv = document.createElement('div');
+            errorDiv.innerText = "Please select a State"
+            let stateContainer = document.querySelector('#stateContainer')
+            stateContainer.append(errorDiv)
+            errorDiv.style.color = "#cc0000";
+            errorDiv.classList.add("inputError");
+        }
+        else if(document.querySelector('#expMonthSelect').value === "blank" || document.querySelector('#expYearSelect').value === "blank"){
+          let errorDiv = document.createElement('div');
+          errorDiv.innerText = "Please select a Complete Expiration Date"
+          let expMonthContainer = document.querySelector('#expMonthContainer')
+          expMonthContainer.append(errorDiv)
+          errorDiv.style.color = "#cc0000";
+          errorDiv.classList.add("inputError");
+        }
+      
+        else if(parseInt(document.querySelector('#expYearSelect').value)===year){
+            let date = new Date()
+            let month = date.getMonth()
+            if(parseInt(document.querySelector('#expMonthSelect').value) < month ){
+              let errorDiv = document.createElement('div');
+              errorDiv.innerText = "Please select a Valid Expiration Date"
+              let expMonthContainer = document.querySelector('#expMonthContainer')
+              expMonthContainer.append(errorDiv)
+              errorDiv.style.color = "#cc0000";
+              errorDiv.classList.add("inputError");
+            }
+        }
+        else {
+            navigate('/orderConfirmation')
+            document.querySelector("#checkoutForm").submit();
+            resetCart();
+         
+        }
+      };
   return (
-    <form className="ui form" onSubmit={validateForm} id="checkoutForm">
+    <form className="ui form"  id="checkoutForm">
       <h4 className="ui dividing header">Shipping Information</h4>
       <div className="field">
         <label>Your Info</label>
@@ -278,7 +284,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
         </div>
         <div>
           <button className="negative ui button" type="button" onClick ={()=>setOpenModal(false)} >Back to cart</button>
-          <button className="positive ui button">Checkout</button>
+          <button className="positive ui button" type="submit" onClick={validateForm}>Checkout</button>
         </div>
       </div>
     </form>
@@ -287,8 +293,8 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        resetCart: ()=> dispatch(resetCart)
+        resetCart: ()=> dispatch(resetCart())
     }
 }
 
-export default connect(mapDispatchToProps)(ModalForm);
+export default connect(null, mapDispatchToProps)(ModalForm);
