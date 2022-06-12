@@ -1,25 +1,12 @@
-.contentContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem 1rem;
-    align-items: center;
-    justify-items: center;
-    background-color: #f1f2f6;
-    padding: 2rem;
-    
-    
-}
-    
+#test{
+   justify-content: center;
+   margin-top: 2rem;
+}   
 
 
 img {
     height: 10rem;
 }
-.contentContainer > * {
-    text-align: center;
-    
-}
-
-.ui.card {
-    margin: 0;
+.product-pic{
+    height: 200px;
 }

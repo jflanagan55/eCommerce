@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage/HomePage";
 import SuccessOrderPage from "./components/SuccessOrderPage";
 import HideNav from "./components/HideNav";
 import ShowNav from "./components/ShowNav";
+import IncorrectPath from "./components/IncorrectPath";
 
  const App = () =>{
      
@@ -15,13 +16,14 @@ import ShowNav from "./components/ShowNav";
          <BrowserRouter>
             <div>   
                 <Routes>
-                    <Route element={<HideNav/>}>
-                        <Route path ="/orderConfirmation" element={<SuccessOrderPage />} />
-                    </Route>
-                    <Route element={<ShowNav/>}>
+                <Route element={<ShowNav/>}>
                         <Route exact path="/" element={<HomePage />} />
                         <Route exact path="products" element={<Content />} />
                         <Route exact path ="/cart" element={<Cart />} />
+                    </Route>
+                    <Route element={<HideNav/>}>
+                        <Route path ="/orderConfirmation" element={<SuccessOrderPage />} />
+                        <Route path = "*" element={<IncorrectPath/>}/>
                     </Route>
                     
                 </Routes>

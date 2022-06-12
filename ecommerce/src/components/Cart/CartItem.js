@@ -18,20 +18,27 @@ const CartItem = ({itemData, removeFromCart, adjustQty}) =>{
     }
    
     return (
-        <div className='ui card'>
-            <img 
-              src={itemData.image}  
-            />
-            <div>
-                <h3>{itemData.name}</h3>
-                <p>$ {itemData.price}</p>
+        <div className='ui segment' id='cart-item'>
+            <div id='left-side'>
+                <img
+                className='ui small image' 
+                src={itemData.image}
+                id='cart-image'  
+                />
+                <div id='name-and-price'>
+                    <h3>{itemData.name}</h3>
+                    <p>$ {itemData.price}</p>
+                </div>
             </div>
-            <div className='qtyInfo ui labeled input'>
-                <label htmlFor='qty' className='ui label'>Quantity</label>
-                <input className='ui input' size = "5" min="1" type= "number" id= "qty" name = "qty" value = {input} onChange = {onChangeHandler}/>
+            <div id='right-side'>
+                <div className=' ui labeled input' >
+                    <label htmlFor='qty' className='ui blue label' id='qty-label'>Quantity</label>
+                    <input className="ui input" min="1" max="99" type= "number" id= "qty" name = "qty" value = {input} onChange = {onChangeHandler}/>
+                </div>
                 
+                <button onClick = {()=>removeFromCart(itemData.id)} className= 'negative ui button'>Delete</button>
+            
             </div>
-            <button onClick = {()=>removeFromCart(itemData.id)} className= 'negative ui button'>Delete</button>
         </div>
     )
 }

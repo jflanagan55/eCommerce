@@ -1,56 +1,30 @@
 * {
     text-align: center;
 }
-
-.cartItemContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-    justify-items: center;
-}
-
-.qtyInfo{
-    margin-bottom: 0.8rem;
-    padding: 0 1rem;
-}
-
-.cartSummary {
+#cart-item{
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 1rem;
-    border-top: 2px solid black;
-    align-items: center;
-    padding: 2rem;
+    justify-content: space-between;
+    margin:0 1.5rem;
 }
-
-.itemsAndPrice{
+#summary-box{
+    display: flex;
+    justify-content: center;
+    gap: 3rem
+}
+#left-side, #right-side{
+    display: flex;
+    gap: 1rem;
+}
+#name-and-price, #right-side, #items-and-price{
     display: flex;
     flex-direction: column;
-}
-
-.cartSummary>div>h3{
-    font-size: 2rem;
-}
-
-#itemCount{
-    font-size: 1.2rem;
-}
-h2{
     justify-content: center;
-}
-#qty {
-    padding-left: 1rem;
-    text-align: center;
-}
-
-@media only screen and (max-width:850px){
-
-    .ReactModal__Content{
-        height: 100%; 
-        width: 100%;
     
-    }
 }
+#qty-label{
+    font-weight: 400;
+}
+
+
 
 

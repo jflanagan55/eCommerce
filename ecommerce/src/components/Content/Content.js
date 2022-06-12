@@ -6,7 +6,7 @@ import './content.css'
 
 const Content = ( {products} ) =>{
     return(
-    <div className="contentContainer">
+    <div className="ui cards" id="test">
         {products.map((product)=>(
             <ShoeCard key = {product.id} productData = {product}/>
         ))}

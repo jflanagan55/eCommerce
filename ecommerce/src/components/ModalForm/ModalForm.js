@@ -122,6 +122,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
               placeholder="First Name"
               className="field"
               id="firstName"
+              required
             />
           </div>
           <div className="field" id="lastNameContainer">
@@ -130,6 +131,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
               placeholder="Last Name"
               className="field"
               id="lastName"
+              required
             />
           </div>
         </div>
@@ -140,6 +142,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
               placeholder="Phone Number"
               className="field"
               id="phoneNumber"
+              required
             />
           </div>
           <div className="field" id="emailContainer">
@@ -148,6 +151,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
               placeholder="Email Address"
               className="field"
               id="emailAddress"
+              required
             />
           </div>
         </div>
@@ -157,15 +161,15 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
         <div className=" four fields">
           <div className="field" id="streetAddressContainer">
             <label>Street Address</label>
-            <input type="text" className="field" id="streetAddress" />
+            <input type="text" className="field" id="streetAddress" required/>
           </div>
           <div className="field" id="cityContainer">
             <label>City</label>
-            <input type="text" className="field" id="city" />
+            <input type="text" className="field" id="city" required/>
           </div>
           <div className="field" id="stateContainer">
             <label>State</label>
-            <select className="ui fluid dropdown" id= "stateSelect">
+            <select className="ui fluid dropdown" id= "stateSelect" required>
               <option value="blank"></option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -222,7 +226,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
           </div>
           <div className="field" id="zipCodeContainer">
             <label>Zip Code</label>
-            <input type="text" className="field" id="zipCode" />
+            <input type="text" className="field" id="zipCode" required/>
           </div>
         </div>
         <div className="field">
@@ -230,15 +234,15 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
           <div className="four fields">
             <div className="field" id="cardNumberContainer">
               <label>Card Number</label>
-              <input type="text" className="field" id="cardNumber" />
+              <input type="text" className="field" id="cardNumber" required/>
             </div>
             <div className="field" id="cvvContainer">
               <label>CVV/CVC</label>
-              <input type="text" className="field" id="cvv" />
+              <input type="text" className="field" id="cvv" required/>
             </div>
             <div className="field" id="expMonthContainer">
               <label>Exp. Month</label>
-              <select className="ui fluid search dropdown" id="expMonthSelect">
+              <select className="ui fluid search dropdown" id="expMonthSelect" required>
                 <option value="blank">Month</option>
                 <option value="0">January</option>
                 <option value="1">February</option>
@@ -256,7 +260,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart} ) => {
             </div>
             <div className="field" id="expYearContainer">
               <label>Exp. Year</label>
-              <select className="ui fluid search dropdown" id="expYearSelect">
+              <select className="ui fluid search dropdown" id="expYearSelect" required>
                 <option value="blank">Year</option>
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
