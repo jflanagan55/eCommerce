@@ -63,9 +63,9 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
     }
   };
   return (
-    <div>
+    <div id="lalal">
       {error.length>0 &&<h3 style={{'backgroundColor': 'red', 'color': 'white'}} className="ui white block header">{error}</h3>}
-    <form className="ui form" id="checkoutForm" onSubmit={handleSubmit}>
+    <form  className="ui form" id="checkoutForm" onSubmit={handleSubmit}>
       <h4 className="ui dividing header">Shipping Information</h4>
       <div className="field">
         <label>Your Info</label>
