@@ -20,16 +20,15 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
   const [expMonth, setExpMonth] = useState("");
   const [expYear, setExpYear] = useState("");
   const [error, setError] = useState("");
-  useEffect(()=>{
-   alert(error)
-  },[error])
-
   
-  const handleSubmit =  (e) => {
+
+
+  const handleSubmit =  async(e) => {
     e.preventDefault();
-    setError("")
+  
     let date = new Date();
     let currentYear = date.getFullYear();
+    let currentMonth = date.getMonth();
 
     if (validation.firstNameCheck.test(firstName) === false) {
       setError("Invalid First Name");
@@ -54,20 +53,18 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
     } else if (expMonth === "" || expYear === "") {
       setError("Please Fill in Expiration Date");
      
-    } else if (parseInt(expYear) === currentYear) {
-      let currentMonth = date.getMonth();
-      if (parseInt(expMonth) < currentMonth) {
+    } else if (parseInt(expYear) === currentYear && (parseInt(expMonth) < currentMonth)) {
         setError("Invalid Expiration Date");
-      }
-    } 
-    console.log(error)
-    // else {
-    //   navigate("/orderConfirmation");
-    //   document.querySelector("#checkoutForm").submit();
-    //   resetCart();
-    // }
+    }
+    else {
+      navigate("/orderConfirmation");
+      document.querySelector("#checkoutForm").submit();
+      resetCart();
+    }
   };
   return (
+    <div>
+      {error.length>0 &&<h3 style={{'backgroundColor': 'red', 'color': 'white'}} className="ui white block header">{error}</h3>}
     <form className="ui form" id="checkoutForm" onSubmit={handleSubmit}>
       <h4 className="ui dividing header">Shipping Information</h4>
       <div className="field">
@@ -318,6 +315,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
         </div>
       </div>
     </form>
+    </div>
   );
 };
 
