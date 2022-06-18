@@ -5,14 +5,14 @@ const ShoeCard = ({productData, addToCart}) =>{
     return(
       
             <div className='ui card'>
-                <h2>{productData.name}</h2>
+                <h2 style={{paddingTop: '1rem'}}>{productData.name}</h2>
                 <div className='ui image'>
                     <img src={productData.image} className="product-pic"  style={{height:"200px"}}/>
                 </div>
                 <div className='content'>
                     <h3>${productData.price}</h3>
                 </div>
-                <button className='ui teal button' onClick= {()=> addToCart(productData.id)}>Add to Cart</button>
+                <button style={{fontSize: '1.4rem'}}className='ui teal button' onClick= {()=> addToCart(productData.id)}>Add to Cart</button>
             </div>
         
     ) 

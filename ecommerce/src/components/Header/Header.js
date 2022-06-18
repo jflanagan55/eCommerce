@@ -19,16 +19,16 @@ const Header = ({cart},props) =>{
     return(
         <nav>
             <div className = "leftSideNav">
-                <Link to="/">
+                <Link to="/" className='navLink'>
                     <h1>Seoh's Shoes</h1>
                 </Link>
             </div>
             <div className='rightSideNav'>
-                <Link to="/">Home</Link>
-                <Link to="/products" >Our Products</Link>
-                <Link to="/cart" >
-                    <FaShoppingCart size = {30} />
-                    <span>{cartCount}</span>
+                <Link to="/" className='navLink'>Home</Link>
+                <Link to="/products" className='navLink'>Our Products</Link>
+                <Link to="/cart"  className='navLink'>
+                    <FaShoppingCart size = {30}/>
+                    <span >{cartCount}</span>
                 </Link>
                 
             </div>

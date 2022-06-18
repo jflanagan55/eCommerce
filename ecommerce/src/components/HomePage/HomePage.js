@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 const HomePage = () =>{
     return(
         <div className="homePageContainer">
-            <div className="forHomePageBlackOverlay">
-                <div className="centerContent">
+            <div className="homePageBlackOverlay">
+                <div id="home-content">
                     <h2 id="shoeTitle">Seoh's Shoes</h2>
                     <p id="shoeDes">Shoes for Everyone</p>
                     <Link to='/products'>

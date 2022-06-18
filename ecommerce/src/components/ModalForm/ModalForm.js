@@ -23,7 +23,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
   
 
 
-  const handleSubmit =  async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
   
     let date = new Date();
@@ -63,12 +63,11 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
     }
   };
   return (
-    <div id="lalal">
+    <div>
       {error.length>0 &&<h3 style={{'backgroundColor': 'red', 'color': 'white'}} className="ui white block header">{error}</h3>}
     <form  className="ui form" id="checkoutForm" onSubmit={handleSubmit}>
       <h4 className="ui dividing header">Shipping Information</h4>
       <div className="field">
-        <label>Your Info</label>
         <div className="two fields">
           <div className="field" id="firstNameContainer">
             <input
@@ -119,7 +118,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
         </div>
       </div>
       <div className="field">
-        <label>Shipping Address</label>
+        <h4 className="ui dividing header">Shipping Address</h4>
         <div className=" four fields">
           <div className="field" id="streetAddressContainer">
             <label>Street Address</label>
@@ -219,7 +218,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
           </div>
         </div>
         <div className="field">
-          <label>Payment Info</label>
+        <h4 className="ui dividing header">Payment Information</h4>
           <div className="four fields">
             <div className="field" id="cardNumberContainer">
               <label>Card Number</label>
@@ -303,6 +302,7 @@ const ModalForm = ({ totalPrice, setOpenModal, resetCart }) => {
         </div>
         <div>
           <button
+          style={{margin: '1rem'}}
             className="negative ui button"
             type="button"
             onClick={() => setOpenModal(false)}

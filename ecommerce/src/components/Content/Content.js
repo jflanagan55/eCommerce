@@ -7,7 +7,7 @@ const Content = ({ products }) => {
   return (
     <div id="background-image-container">
       <div id="background-image-overlay">
-        <div className="ui cards" id="test">
+        <div className="ui cards" id="card-container">
           {products.map((product) => (
             <ShoeCard key={product.id} productData={product} />
           ))}

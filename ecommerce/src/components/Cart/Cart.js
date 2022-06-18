@@ -23,78 +23,64 @@ const Cart = ({ cart }) => {
     setTotalItems(items);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
-  const checkCart = () => {
-    if (document.contains(document.querySelector(".errorDiv"))) {
-      document.querySelector(".errorDiv").remove();
-    }
-    if (cart.length === 0) {
-      let cartContainer = document.querySelector("#cartContainer");
-      let emptyWarn = document.createElement("div");
-      emptyWarn.innerText = "Your Cart is empty";
-      emptyWarn.style.color = "#cc0000";
-      emptyWarn.classList.add("errorDiv");
-      cartContainer.append(emptyWarn);
-    } else {
-      if (document.contains(document.querySelector(".errorDiv"))) {
-        document.querySelector(".errorDiv").remove();
-      }
-      setOpenModal(true);
-    }
-  };
-
   const [openModal, setOpenModal] = useState(false);
+  const makeModalOpen = () => {
+    setOpenModal(true);
+  };
   Modal.setAppElement("#root");
   return (
     <div id="cartContainer">
-            <h2>Your Cart</h2>
-      <div className="ui segments">
-        {cart.map((item) => (
-          <CartItem key={item.id} itemData={item} />
-        ))}
-      </div>
-      <div>
-        <div>
-          <h3>Summary</h3>
+      {cart.length === 0 ? (
+        <div className="yourCart">
+          <h2>Your Cart Is Empty!</h2>
         </div>
-        <div className="ui segment" id="summary-box">
-          <div id="items-and-price">
-            <span id="itemCount">{totalItems} Items</span>
-            <span>
-              <b>$ {totalPrice.toFixed(2)}</b>
-            </span>
+      ) : (
+        <div className="yourCart">
+          <h2>Your Cart</h2>
+          <div className="ui segments">
+            {cart.map((item) => (
+              <CartItem key={item.id} itemData={item} />
+            ))}
           </div>
-          <button className="positive ui button" onClick={checkCart}>
-            Checkout
-          </button>
+          <div>
+            <div>
+              <h3>Summary</h3>
+            </div>
+            <div className="ui segment" id="summary-box">
+              <div id="items-and-price">
+                <span id="itemCount">{totalItems} Items</span>
+                <span>
+                  <b>$ {totalPrice.toFixed(2)}</b>
+                </span>
+              </div>
+              <button className="positive ui button" onClick={makeModalOpen}>
+                Checkout
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
       <Modal
         isOpen={openModal}
         onRequestClose={() => setOpenModal(false)}
         id="modal"
-        className= "ui fluid card"
+        className="ui fluid card"
         style={{
           overlay: {
             backgroundColor: "rgba(0,0,0,0.6)",
-            display: 'flex',
-            justifyContent:'center',
-            overflow: 'auto',
-            maxHeight:'100%',
-            padding:'3rem'
-            
+            display: "flex",
+            justifyContent: "center",
+            maxHeight: "100%",
+            padding: "3rem",
           },
           content: {
-              maxWidth: '600px',
-              margin: 'auto',
-              padding: '1.5rem',
-
-            // top: "50%",
-            // left: "50%",
-            // right: "auto",
-            // bottom: "auto",
-            // marginRight: "-50%",
-            // transform: "translate(-50%, -50%)",
-          }
+            maxWidth: "600px",
+            margin: "auto",
+            padding: "1.5rem",
+            maxHeight: '80%',
+            overflow: 'auto'
+          },
         }}
       >
         <div></div>

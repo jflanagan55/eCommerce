@@ -24,7 +24,20 @@
 #qty-label{
     font-weight: 400;
 }
+.yourCart h2{
+    padding-top: 1rem;
+}
 
-
+@media screen and (max-width: 550px) {
+    #cart-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    }
+    #right-side{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+  }
 
 

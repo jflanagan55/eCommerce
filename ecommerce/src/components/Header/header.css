@@ -1,34 +1,54 @@
-*{
-    font-family: 'Mali', cursive;
-    margin: 0;
-    
+* {
+  font-family: "Mali", cursive;
+  margin: 0;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    background-color: #02191e;
-    padding: 1.5rem;
-    color: #fefefe 
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #02191e;
+  padding: 1.5rem;
+  color: #fefefe;
 }
 
 .rightSideNav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    
-
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 .leftSideNav {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-a{
+.leftSideNav h1{
+  font-family: "Water Brush", cursive;
+  font-size: 2.2rem;
+}
+.navLink{
+    color: white;
+    font-size: 1.2rem;
+    padding:0.5rem;
+    position: relative;
+}
+.navLink:hover{
     color: white;
 }
-
-
-
-
-
+.navLink:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid white;
+    transition: 0.4s;
+  }
+  .navLink:hover:after {
+    width: 100%;
+  }
+@media screen and (max-width: 500px) {
+    nav {
+    flex-direction: column;
+    align-items: center;
+    }
+  }
